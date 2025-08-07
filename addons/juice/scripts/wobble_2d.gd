@@ -1,7 +1,8 @@
 @tool
-class_name Stretch2D
+class_name Wobble2D
 extends Node2D
-# TODO Add direction randomization
+## This node wobbles (oscillates rotation) with the specified amplitude and
+## specified frequency for the specified duration when told to play.
 
 #/##########################/# SIGNALS #/##########################/#
 
@@ -19,28 +20,25 @@ signal finished()
 ## The number of oscillations per second.
 @export_range(-128.0, 128.0) var frequency := 8.0
 
-## The amplitude of oscillations as a ratio of stretched size to unstretched size.
-@export_range(-16.0, 16.0) var amplitude := 0.1
-
-## The direction of oscillation for positive amplitude.
-@export var direction := Vector2.RIGHT
+## The amplitude of oscillations in radians.
+@export_range(-PI, PI) var amplitude := 0.1
 
 #/##########################/# VARIABLES #/##########################/#
 
 var time := 0.0
 
-var offset := Vector2.ONE
+var offset := 0.0
 
 #/##########################/# SETGET #/##########################/#
 
 func set_playing(new_playing: bool) -> void:
 	if not playing and new_playing:
 		time = 0.0
-		offset = scale
+		offset = rotation
 	elif playing and not new_playing:
 		time = 0.0
-		scale = offset
-		offset = Vector2.ONE
+		rotation = offset
+		offset = 0.0
 	
 	playing = new_playing
 	set_process(new_playing)
@@ -65,7 +63,7 @@ func stop() -> void:
 func _process(delta: float) -> void:
 	time += delta
 	
-	scale = offset + amplitude * sin(2.0 * PI * frequency * time) * direction
+	rotation = offset + amplitude * sin(2.0 * PI * frequency * time)
 	
 	if time >= duration:
 		stop()
