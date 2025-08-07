@@ -51,7 +51,7 @@ func set_playing(new_playing: bool) -> void:
 #/##########################/# INIT #/##########################/#
 
 func _ready() -> void:
-	set_process(false)
+	set_process(playing)
 
 #/##########################/# METHODS #/##########################/#
 

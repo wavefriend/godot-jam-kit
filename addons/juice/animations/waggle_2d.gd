@@ -1,9 +1,8 @@
 @tool
-class_name Shake2D
+class_name Waggle2D
 extends Node2D
-## This node shakes (oscillates position) with the specified amplitude and
-## specified frequency in the specified direction for the specified duration
-## when told to play.
+## This node waggles (oscillates skew) with the specified amplitude and
+## specified frequency for the specified duration when told to play.
 
 #/##########################/# SIGNALS #/##########################/#
 
@@ -21,29 +20,25 @@ signal finished()
 ## The number of oscillations per second.
 @export_range(-128.0, 128.0) var frequency := 8.0
 
-## The amplitude of oscillations in pixels.
-@export_range(-128.0, 128.0) var amplitude := 8.0
-
-## The direction of oscillation for positive amplitude.
-@export var direction := Vector2.RIGHT
-# TODO Add direction randomization
+## The amplitude of oscillations in radians.
+@export_range(-16.0, 16.0) var amplitude := 0.1
 
 #/##########################/# VARIABLES #/##########################/#
 
 var time := 0.0
 
-var offset := Vector2.ZERO
+var offset := 0.0
 
 #/##########################/# SETGET #/##########################/#
 
 func set_playing(new_playing: bool) -> void:
 	if not playing and new_playing:
 		time = 0.0
-		offset = position
+		offset = skew
 	elif playing and not new_playing:
 		time = 0.0
-		position = offset
-		offset = Vector2.ZERO
+		skew = offset
+		offset = 0.0
 	
 	playing = new_playing
 	set_process(new_playing)
@@ -51,7 +46,7 @@ func set_playing(new_playing: bool) -> void:
 #/##########################/# INIT #/##########################/#
 
 func _ready() -> void:
-	set_process(false)
+	set_process(playing)
 
 #/##########################/# METHODS #/##########################/#
 
@@ -68,7 +63,7 @@ func stop() -> void:
 func _process(delta: float) -> void:
 	time += delta
 	
-	position = offset + amplitude * sin(2.0 * PI * frequency * time) * direction
+	skew = offset + amplitude * sin(2.0 * PI * frequency * time)
 	
 	if time >= duration:
 		stop()

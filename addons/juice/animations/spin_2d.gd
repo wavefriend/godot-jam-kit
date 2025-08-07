@@ -9,10 +9,10 @@ extends Node2D
 ## If true, the animation plays until it's stopped.
 @export var playing := false : set = set_playing
 
-## Angular velocity in radians per second.
+## The angular velocity in radians per second.
 @export var angular_velocity := 0.25 * PI
 
-## Angular velocity in degrees per second.
+## The angular velocity in degrees per second.
 @export var angular_velocity_degrees := 45.0 : set = set_angular_velocity_degrees
 
 #/##########################/# SETGET #/##########################/#
@@ -29,7 +29,7 @@ func set_angular_velocity_degrees(new_angular_velocity_degrees: float) -> void:
 #/##########################/# INIT #/##########################/#
 
 func _ready() -> void:
-	set_process(false)
+	set_process(playing)
 
 #/##########################/# METHODS #/##########################/#
 
