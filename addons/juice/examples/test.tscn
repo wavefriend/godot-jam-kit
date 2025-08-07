@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://yw5rgp3f6vy"]
+
+[ext_resource type="Script" uid="uid://d3aege67kq6ck" path="res://addons/juice/examples/scripts/test.gd" id="1_au4wx"]
+[ext_resource type="Script" uid="uid://bsqqj1u1l6lm0" path="res://addons/juice/scripts/shake_2d.gd" id="2_oashs"]
+[ext_resource type="Script" uid="uid://bcdtca5h3yu5u" path="res://addons/juice/scripts/stretch_2d.gd" id="3_oashs"]
+
+[node name="Test" type="Node2D"]
+script = ExtResource("1_au4wx")
+
+[node name="Shake2D" type="Node2D" parent="."]
+position = Vector2(585, 310)
+script = ExtResource("2_oashs")
+metadata/_custom_type_script = "uid://bsqqj1u1l6lm0"
+
+[node name="ColorRect" type="ColorRect" parent="Shake2D"]
+offset_left = -51.0
+offset_top = -56.0
+offset_right = 53.0
+offset_bottom = 51.0
+
+[node name="Stretch2D" type="Node2D" parent="."]
+position = Vector2(280, 210)
+script = ExtResource("3_oashs")
+metadata/_custom_type_script = "uid://bcdtca5h3yu5u"
+
+[node name="ColorRect" type="ColorRect" parent="Stretch2D"]
+offset_left = -55.0
+offset_top = -52.0
+offset_right = 49.0
+offset_bottom = 55.0
