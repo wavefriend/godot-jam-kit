@@ -17,6 +17,9 @@ extends Playable2D
 ## The deceleration in scale factor units per second per second.
 @export var deceleration := 4.0
 
+## If true, the playable finishes when it reaches the destination.
+@export var finish_at_destination := true
+
 #/##########################/# VARIABLES #/##########################/#
 
 var speed := 0.0
@@ -39,7 +42,7 @@ func _on_step(delta: float) -> bool:
 	
 	if scale.is_equal_approx(destination):
 		scale = destination
-		return true
+		return finish_at_destination
 	else:
 		return false
 

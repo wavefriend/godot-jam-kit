@@ -18,6 +18,9 @@ extends Node2D
 ## The deceleration in degrees per second per second.
 @export var deceleration := 1440.0
 
+## If true, the playable finishes when the displacement reaches zero.
+@export var finish_after_displacement := true
+
 #/##########################/# VARIABLES #/##########################/#
 
 var speed := 0.0
@@ -42,7 +45,7 @@ func _on_step(delta: float) -> bool:
 	
 	if is_zero_approx(displacement):
 		rotation_degrees += displacement
-		return true
+		return finish_after_displacement
 	else:
 		return false
 

@@ -17,6 +17,9 @@ extends Playable2D
 ## The deceleration in degrees per second per second.
 @export var deceleration := 1440.0
 
+## If true, the playable finishes when it reaches the destination.
+@export var finish_at_destination := true
+
 #/##########################/# VARIABLES #/##########################/#
 
 var speed := 0.0
@@ -40,7 +43,7 @@ func _on_step(delta: float) -> bool:
 	
 	if is_equal_approx(skew_degrees, destination):
 		skew = deg_to_rad(destination)
-		return true
+		return finish_at_destination
 	else:
 		return false
 

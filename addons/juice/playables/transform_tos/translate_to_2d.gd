@@ -18,6 +18,9 @@ extends Playable2D
 ## The deceleration in pixels per second per second.
 @export var deceleration := 1024.0
 
+## If true, the playable finishes when it reaches the destination.
+@export var finish_at_destination := true
+
 #/##########################/# VARIABLES #/##########################/#
 
 var speed := 0.0
@@ -40,7 +43,7 @@ func _on_step(delta: float) -> bool:
 	
 	if position.is_equal_approx(destination):
 		position = destination
-		return true
+		return finish_at_destination
 	else:
 		return false
 

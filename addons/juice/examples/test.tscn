@@ -70,7 +70,7 @@ offset_right = 104.0
 offset_bottom = 107.0
 
 [node name="TranslateBy2D" type="Node2D" parent="."]
-position = Vector2(1277, 549)
+position = Vector2(1377, 589)
 script = ExtResource("6_alp8x")
 metadata/_custom_type_script = "uid://bdg0yurn5d1ql"
 metadata/_edit_group_ = true
@@ -80,9 +80,9 @@ offset_right = 104.0
 offset_bottom = 107.0
 
 [node name="TranslateTo2D" type="Node2D" parent="."]
-position = Vector2(1000, 300)
+position = Vector2(-50, -10)
 script = ExtResource("8_jw14g")
-destination = Vector2(1000, 300)
+destination = Vector2(-50, -10)
 metadata/_custom_type_script = "uid://ddjtycbhanqy5"
 metadata/_edit_group_ = true
 
@@ -91,7 +91,7 @@ offset_right = 104.0
 offset_bottom = 107.0
 
 [node name="Orbit2D" type="Node2D" parent="."]
-position = Vector2(95.7685, 553.995)
+position = Vector2(-5.56621, 322.554)
 script = ExtResource("9_mvitt")
 center = Vector2(64, 430)
 radius = 128.0
@@ -100,7 +100,7 @@ metadata/_custom_type_script = "uid://bpqjp6dd6bek"
 metadata/_edit_group_ = true
 
 [node name="Spin2D" type="Node2D" parent="Orbit2D"]
-rotation = 5556.23
+rotation = 5910.93
 script = ExtResource("4_bjx0k")
 playing = true
 metadata/_custom_type_script = "uid://bhcpf5sm1sd5u"
