@@ -60,11 +60,8 @@ offset_bottom = 107.0
 
 [node name="Spin2D" type="Node2D" parent="."]
 position = Vector2(854, 112)
-rotation = 18854.5
+rotation = 19838.8
 script = ExtResource("4_bjx0k")
-angular_velocity = 1.5708
-angular_velocity_degrees = 90.0
-playing = true
 metadata/_custom_type_script = "uid://bhcpf5sm1sd5u"
 metadata/_edit_group_ = true
 
@@ -73,7 +70,7 @@ offset_right = 104.0
 offset_bottom = 107.0
 
 [node name="TranslateBy2D" type="Node2D" parent="."]
-position = Vector2(1021, 549)
+position = Vector2(1277, 549)
 script = ExtResource("6_alp8x")
 metadata/_custom_type_script = "uid://bdg0yurn5d1ql"
 metadata/_edit_group_ = true
@@ -94,7 +91,7 @@ offset_right = 104.0
 offset_bottom = 107.0
 
 [node name="Orbit2D" type="Node2D" parent="."]
-position = Vector2(187.671, 463.007)
+position = Vector2(95.7685, 553.995)
 script = ExtResource("9_mvitt")
 center = Vector2(64, 430)
 radius = 128.0
@@ -103,7 +100,7 @@ metadata/_custom_type_script = "uid://bpqjp6dd6bek"
 metadata/_edit_group_ = true
 
 [node name="Spin2D" type="Node2D" parent="Orbit2D"]
-rotation = 4979.41
+rotation = 5556.23
 script = ExtResource("4_bjx0k")
 playing = true
 metadata/_custom_type_script = "uid://bhcpf5sm1sd5u"
@@ -114,8 +111,9 @@ offset_bottom = 107.0
 
 [node name="SkewTo2D" type="Node2D" parent="."]
 position = Vector2(654, 531)
-skew = -0.698132
+skew = 0.523599
 script = ExtResource("10_4ijx6")
+destination = 30.0
 metadata/_custom_type_script = "uid://bmv0a31qh4rki"
 metadata/_edit_group_ = true
 

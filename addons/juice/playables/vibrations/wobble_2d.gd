@@ -7,13 +7,13 @@ extends Playable2D
 #/##########################/# EXPORTS #/##########################/#
 
 ## The duration of the animation in seconds.
-@export_range(0.0, 128.0) var duration := 1.0
+@export var duration := 1.0
 
 ## The number of oscillations per second.
-@export_range(-128.0, 128.0) var frequency := 8.0
+@export var frequency := 8.0
 
-## The amplitude of oscillations in radians.
-@export_range(-PI, PI) var amplitude := 0.1
+## The amplitude of oscillations in degrees.
+@export var amplitude := 10.0
 
 #/##########################/# VARIABLES #/##########################/#
 
@@ -36,7 +36,7 @@ func _on_stop() -> void:
 
 func _on_step(delta: float) -> bool:
 	time += delta
-	rotation = offset + amplitude * sin(2.0 * PI * frequency * time)
+	rotation = offset + deg_to_rad(amplitude) * sin(2.0 * PI * frequency * time)
 	return time >= duration
 
 #/##########################/# END #/##########################/#

@@ -5,17 +5,17 @@ extends Playable2D
 
 #/##########################/# EXPORTS #/##########################/#
 
-## The destination of this playable.
+## The destination of this playable in scale factor units.
 @export var destination := Vector2.ONE
 
 ## The max speed in scale factor units per second.
-@export_range(0.0, 16.0) var max_speed := 4.0
+@export var max_speed := 1.0
 
 ## The acceleration in scale factor units per second per second.
-@export_range(0.0, 64.0) var acceleration := 16.0
+@export var acceleration := 4.0
 
 ## The deceleration in scale factor units per second per second.
-@export_range(0.0, 64.0) var deceleration := 16.0
+@export var deceleration := 4.0
 
 #/##########################/# VARIABLES #/##########################/#
 

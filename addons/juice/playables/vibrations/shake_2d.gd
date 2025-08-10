@@ -7,13 +7,13 @@ extends Playable2D
 #/##########################/# EXPORTS #/##########################/#
 
 ## The duration of the animation in seconds.
-@export_range(0.0, 128.0) var duration := 1.0
+@export var duration := 1.0
 
 ## The number of oscillations per second.
-@export_range(-128.0, 128.0) var frequency := 8.0
+@export var frequency := 8.0
 
 ## The amplitude of oscillations in pixels.
-@export_range(-128.0, 128.0) var amplitude := 8.0
+@export var amplitude := 8.0
 
 ## The direction of oscillation for positive amplitude.
 @export var direction := Vector2.RIGHT

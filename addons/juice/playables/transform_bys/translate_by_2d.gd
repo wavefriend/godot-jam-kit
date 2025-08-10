@@ -10,13 +10,13 @@ extends Playable2D
 @export var displacement := Vector2.ZERO
 
 ## The max speed in pixels per second.
-@export_range(0.0, 1024.0) var max_speed := 256.0
+@export var max_speed := 256.0
 
 ## The acceleration in pixels per second per second.
-@export_range(0.0, 8192.0) var acceleration := 1024.0
+@export var acceleration := 1024.0
 
 ## The deceleration in pixels per second per second.
-@export_range(0.0, 8192.0) var deceleration := 1024.0
+@export var deceleration := 1024.0
 
 #/##########################/# VARIABLES #/##########################/#
 
