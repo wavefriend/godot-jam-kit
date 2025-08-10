@@ -1,13 +1,10 @@
 @tool
 class_name Spin2D
-extends Node2D
+extends Playable2D
 ## This node rotates at the specified angular velocity indefinitely or until
 ## stopped.
 
 #/##########################/# EXPORTS #/##########################/#
-
-## If true, the animation plays until it's stopped.
-@export var playing := false : set = set_playing
 
 ## The angular velocity in radians per second.
 @export var angular_velocity := 0.25 * PI
@@ -17,32 +14,20 @@ extends Node2D
 
 #/##########################/# SETGET #/##########################/#
 
-func set_playing(new_playing: bool) -> void:
-	playing = new_playing
-	set_process(playing)
+## TODO We cannot make this a setter without an infinite loop
+func set_angular_velocity(new_angular_velocity: float) -> void:
+	angular_velocity = new_angular_velocity
+	angular_velocity_degrees = rad_to_deg(angular_velocity)
 
 
 func set_angular_velocity_degrees(new_angular_velocity_degrees: float) -> void:
 	angular_velocity_degrees = new_angular_velocity_degrees
 	angular_velocity = deg_to_rad(angular_velocity_degrees)
 
-#/##########################/# INIT #/##########################/#
+#/##########################/# EVENTS #/##########################/#
 
-func _ready() -> void:
-	set_process(playing)
-
-#/##########################/# METHODS #/##########################/#
-
-func play() -> void:
-	playing = true
-
-
-func stop() -> void:
-	playing = false
-
-#/##########################/# GODOT #/##########################/#
-
-func _process(delta: float) -> void:
+func _on_step(delta: float) -> bool:
 	rotation += angular_velocity * delta
+	return false
 
 #/##########################/# END #/##########################/#

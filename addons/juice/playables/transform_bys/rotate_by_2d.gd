@@ -1,4 +1,4 @@
 @tool
-class_name Rotate2D
+class_name RotateBy2D
 extends Node2D
 # TODO Implement

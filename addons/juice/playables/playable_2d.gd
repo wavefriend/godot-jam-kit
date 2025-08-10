@@ -1,44 +1,26 @@
 @tool
-class_name Wobble2D
+class_name Playable2D
 extends Node2D
-## This node wobbles (oscillates rotation) with the specified amplitude and
-## specified frequency for the specified duration when told to play.
+## This is the base class for all nodes that perform an action with a start and
+## end.
 
 #/##########################/# SIGNALS #/##########################/#
 
-## Emitted once the animation has reached the end of the duration.
+## Emitted once the playable has reached its end.
 signal finished()
 
 #/##########################/# EXPORTS #/##########################/#
 
-## If true, the animation plays until it's stopped or finishes.
+## If true, the playable plays until it's stopped or finishes.
 @export var playing := false : set = set_playing
-
-## The duration of the animation in seconds.
-@export_range(0.0, 128.0) var duration := 1.0
-
-## The number of oscillations per second.
-@export_range(-128.0, 128.0) var frequency := 8.0
-
-## The amplitude of oscillations in radians.
-@export_range(-PI, PI) var amplitude := 0.1
-
-#/##########################/# VARIABLES #/##########################/#
-
-var time := 0.0
-
-var offset := 0.0
 
 #/##########################/# SETGET #/##########################/#
 
 func set_playing(new_playing: bool) -> void:
 	if not playing and new_playing:
-		time = 0.0
-		offset = rotation
+		_on_play()
 	elif playing and not new_playing:
-		time = 0.0
-		rotation = offset
-		offset = 0.0
+		_on_stop()
 	
 	playing = new_playing
 	set_process(new_playing)
@@ -58,14 +40,30 @@ func play() -> void:
 func stop() -> void:
 	playing = false
 
+#/##########################/# EVENTS #/##########################/#
+
+## virtual
+## Called when "playing" is set to true from false or play() is called.
+func _on_play() -> void:
+	pass
+
+
+## virtual
+## Called when "playing" is set to false from true or stop() is called or the
+## playable finishes.
+func _on_stop() -> void:
+	pass
+
+
+## virtual
+## Called every process frame. Return true if the playable has finished.
+func _on_step(_delta: float) -> bool:
+	return false
+
 #/##########################/# GODOT #/##########################/#
 
 func _process(delta: float) -> void:
-	time += delta
-	
-	rotation = offset + amplitude * sin(2.0 * PI * frequency * time)
-	
-	if time >= duration:
+	if _on_step(delta):
 		stop()
 		finished.emit()
 

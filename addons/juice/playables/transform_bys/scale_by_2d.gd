@@ -1,4 +1,4 @@
 @tool
-class_name Scale2D
+class_name ScaleBy2D
 extends Node2D
 # TODO Implement
