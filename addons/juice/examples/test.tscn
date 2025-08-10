@@ -1,12 +1,14 @@
-[gd_scene load_steps=11 format=3 uid="uid://yw5rgp3f6vy"]
+[gd_scene load_steps=13 format=3 uid="uid://yw5rgp3f6vy"]
 
 [ext_resource type="Script" uid="uid://d3aege67kq6ck" path="res://addons/juice/examples/scripts/test.gd" id="1_au4wx"]
+[ext_resource type="Script" uid="uid://be75lw7e8tw42" path="res://addons/juice/playables/players/parallel_player_2d.gd" id="2_hjrf7"]
 [ext_resource type="Script" uid="uid://bsqqj1u1l6lm0" path="res://addons/juice/playables/vibrations/shake_2d.gd" id="2_oashs"]
 [ext_resource type="Script" uid="uid://bcdtca5h3yu5u" path="res://addons/juice/playables/vibrations/jiggle_2d.gd" id="3_oashs"]
 [ext_resource type="Script" uid="uid://bhcpf5sm1sd5u" path="res://addons/juice/playables/constant_motions/spin_2d.gd" id="4_bjx0k"]
 [ext_resource type="Script" uid="uid://ujqsxxnak2lb" path="res://addons/juice/playables/vibrations/waggle_2d.gd" id="5_81arn"]
 [ext_resource type="Script" uid="uid://dligrp33b157v" path="res://addons/juice/playables/vibrations/wobble_2d.gd" id="5_lactk"]
 [ext_resource type="Script" uid="uid://bdg0yurn5d1ql" path="res://addons/juice/playables/transform_bys/translate_by_2d.gd" id="6_alp8x"]
+[ext_resource type="Script" uid="uid://cpo0a7g2swgqi" path="res://addons/juice/playables/players/series_player_2d.gd" id="7_eldpe"]
 [ext_resource type="Script" uid="uid://ddjtycbhanqy5" path="res://addons/juice/playables/transform_tos/translate_to_2d.gd" id="8_jw14g"]
 [ext_resource type="Script" uid="uid://bpqjp6dd6bek" path="res://addons/juice/playables/constant_motions/orbit_2d.gd" id="9_mvitt"]
 [ext_resource type="Script" uid="uid://bmv0a31qh4rki" path="res://addons/juice/playables/transform_tos/skew_to_2d.gd" id="10_4ijx6"]
@@ -14,53 +16,94 @@
 [node name="Test" type="Node2D"]
 script = ExtResource("1_au4wx")
 
-[node name="Shake2D" type="Node2D" parent="."]
+[node name="ParallelPlayer2D" type="Node2D" parent="."]
+script = ExtResource("2_hjrf7")
+metadata/_custom_type_script = "uid://be75lw7e8tw42"
+
+[node name="Shake2D" type="Node2D" parent="ParallelPlayer2D"]
 position = Vector2(585, 310)
 script = ExtResource("2_oashs")
 metadata/_custom_type_script = "uid://bsqqj1u1l6lm0"
 metadata/_edit_group_ = true
 
-[node name="ColorRect" type="ColorRect" parent="Shake2D"]
+[node name="ColorRect" type="ColorRect" parent="ParallelPlayer2D/Shake2D"]
 offset_left = -51.0
 offset_top = -56.0
 offset_right = 53.0
 offset_bottom = 51.0
 
-[node name="Jiggle2D" type="Node2D" parent="."]
+[node name="Jiggle2D" type="Node2D" parent="ParallelPlayer2D"]
 position = Vector2(280, 210)
 script = ExtResource("3_oashs")
 metadata/_custom_type_script = "uid://bcdtca5h3yu5u"
 metadata/_edit_group_ = true
 
-[node name="ColorRect" type="ColorRect" parent="Jiggle2D"]
+[node name="ColorRect" type="ColorRect" parent="ParallelPlayer2D/Jiggle2D"]
 offset_left = -55.0
 offset_top = -52.0
 offset_right = 49.0
 offset_bottom = 55.0
 
-[node name="Wobble2D" type="Node2D" parent="."]
+[node name="Wobble2D" type="Node2D" parent="ParallelPlayer2D"]
 position = Vector2(396, 480)
 script = ExtResource("5_lactk")
 metadata/_custom_type_script = "uid://dligrp33b157v"
 metadata/_edit_group_ = true
 
-[node name="ColorRect" type="ColorRect" parent="Wobble2D"]
+[node name="ColorRect" type="ColorRect" parent="ParallelPlayer2D/Wobble2D"]
 offset_right = 104.0
 offset_bottom = 107.0
 
-[node name="Waggle2D" type="Node2D" parent="."]
+[node name="Waggle2D" type="Node2D" parent="ParallelPlayer2D"]
 position = Vector2(427, 30)
 script = ExtResource("5_81arn")
 metadata/_custom_type_script = "uid://ujqsxxnak2lb"
 metadata/_edit_group_ = true
 
-[node name="ColorRect" type="ColorRect" parent="Waggle2D"]
+[node name="ColorRect" type="ColorRect" parent="ParallelPlayer2D/Waggle2D"]
+offset_right = 104.0
+offset_bottom = 107.0
+
+[node name="SeriesPlayer2D" type="Node2D" parent="."]
+script = ExtResource("7_eldpe")
+metadata/_custom_type_script = "uid://cpo0a7g2swgqi"
+
+[node name="TranslateBy2D" type="Node2D" parent="SeriesPlayer2D"]
+position = Vector2(877, 889)
+script = ExtResource("6_alp8x")
+metadata/_custom_type_script = "uid://bdg0yurn5d1ql"
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="SeriesPlayer2D/TranslateBy2D"]
+offset_right = 104.0
+offset_bottom = 107.0
+
+[node name="SkewTo2D" type="Node2D" parent="SeriesPlayer2D"]
+position = Vector2(654, 531)
+skew = 1.5708
+script = ExtResource("10_4ijx6")
+destination = 90.0
+metadata/_custom_type_script = "uid://bmv0a31qh4rki"
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="SeriesPlayer2D/SkewTo2D"]
+offset_right = 104.0
+offset_bottom = 107.0
+
+[node name="TranslateTo2D" type="Node2D" parent="SeriesPlayer2D"]
+position = Vector2(500, -100)
+script = ExtResource("8_jw14g")
+destination = Vector2(500, -100)
+metadata/_custom_type_script = "uid://ddjtycbhanqy5"
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="SeriesPlayer2D/TranslateTo2D"]
 offset_right = 104.0
 offset_bottom = 107.0
 
 [node name="Spin2D" type="Node2D" parent="."]
 position = Vector2(854, 112)
-rotation = 19838.8
+rotation = 2.78281
 script = ExtResource("4_bjx0k")
 metadata/_custom_type_script = "uid://bhcpf5sm1sd5u"
 metadata/_edit_group_ = true
@@ -69,29 +112,8 @@ metadata/_edit_group_ = true
 offset_right = 104.0
 offset_bottom = 107.0
 
-[node name="TranslateBy2D" type="Node2D" parent="."]
-position = Vector2(1377, 589)
-script = ExtResource("6_alp8x")
-metadata/_custom_type_script = "uid://bdg0yurn5d1ql"
-metadata/_edit_group_ = true
-
-[node name="ColorRect" type="ColorRect" parent="TranslateBy2D"]
-offset_right = 104.0
-offset_bottom = 107.0
-
-[node name="TranslateTo2D" type="Node2D" parent="."]
-position = Vector2(-50, -10)
-script = ExtResource("8_jw14g")
-destination = Vector2(-50, -10)
-metadata/_custom_type_script = "uid://ddjtycbhanqy5"
-metadata/_edit_group_ = true
-
-[node name="ColorRect" type="ColorRect" parent="TranslateTo2D"]
-offset_right = 104.0
-offset_bottom = 107.0
-
 [node name="Orbit2D" type="Node2D" parent="."]
-position = Vector2(-5.56621, 322.554)
+position = Vector2(-63.5265, 419.001)
 script = ExtResource("9_mvitt")
 center = Vector2(64, 430)
 radius = 128.0
@@ -100,23 +122,11 @@ metadata/_custom_type_script = "uid://bpqjp6dd6bek"
 metadata/_edit_group_ = true
 
 [node name="Spin2D" type="Node2D" parent="Orbit2D"]
-rotation = 5910.93
+rotation = 7964.83
 script = ExtResource("4_bjx0k")
 playing = true
 metadata/_custom_type_script = "uid://bhcpf5sm1sd5u"
 
 [node name="ColorRect" type="ColorRect" parent="Orbit2D/Spin2D"]
-offset_right = 104.0
-offset_bottom = 107.0
-
-[node name="SkewTo2D" type="Node2D" parent="."]
-position = Vector2(654, 531)
-skew = 0.523599
-script = ExtResource("10_4ijx6")
-destination = 30.0
-metadata/_custom_type_script = "uid://bmv0a31qh4rki"
-metadata/_edit_group_ = true
-
-[node name="ColorRect" type="ColorRect" parent="SkewTo2D"]
 offset_right = 104.0
 offset_bottom = 107.0
